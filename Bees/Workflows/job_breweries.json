@@ -1,0 +1,122 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2822
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \{\
+  "job_id": 254045566247730,\
+  "creator_user_name": "renato-oliveira@outlook.com.br",\
+  "run_as_user_name": "renato-oliveira@outlook.com.br",\
+  "run_as_owner": true,\
+  "settings": \{\
+    "name": "Breweries",\
+    "email_notifications": \{\
+      "on_failure": [\
+        "renato-oliveira@outlook.com.br"\
+      ],\
+      "no_alert_for_skipped_runs": false\
+    \},\
+    "webhook_notifications": \{\},\
+    "notification_settings": \{\
+      "no_alert_for_skipped_runs": false,\
+      "no_alert_for_canceled_runs": false\
+    \},\
+    "timeout_seconds": 3600,\
+    "health": \{\
+      "rules": [\
+        \{\
+          "metric": "RUN_DURATION_SECONDS",\
+          "op": "GREATER_THAN",\
+          "value": 1200\
+        \}\
+      ]\
+    \},\
+    "schedule": \{\
+      "quartz_cron_expression": "50 1 1 * * ?",\
+      "timezone_id": "America/Sao_Paulo",\
+      "pause_status": "UNPAUSED"\
+    \},\
+    "max_concurrent_runs": 1,\
+    "tasks": [\
+      \{\
+        "task_key": "Bronze",\
+        "run_if": "ALL_SUCCESS",\
+        "notebook_task": \{\
+          "notebook_path": "/Workspace/Users/renato-oliveira@outlook.com.br/bees/Bees/bronze/breweries",\
+          "source": "WORKSPACE"\
+        \},\
+        "job_cluster_key": "bees_cluster",\
+        "timeout_seconds": 0,\
+        "email_notifications": \{\},\
+        "webhook_notifications": \{\}\
+      \},\
+      \{\
+        "task_key": "Silver",\
+        "depends_on": [\
+          \{\
+            "task_key": "Bronze"\
+          \}\
+        ],\
+        "run_if": "ALL_SUCCESS",\
+        "notebook_task": \{\
+          "notebook_path": "/Workspace/Users/renato-oliveira@outlook.com.br/bees/Bees/silver/breweries",\
+          "source": "WORKSPACE"\
+        \},\
+        "job_cluster_key": "bees_cluster",\
+        "timeout_seconds": 0,\
+        "email_notifications": \{\},\
+        "webhook_notifications": \{\}\
+      \},\
+      \{\
+        "task_key": "Gold",\
+        "depends_on": [\
+          \{\
+            "task_key": "Silver"\
+          \}\
+        ],\
+        "run_if": "ALL_SUCCESS",\
+        "notebook_task": \{\
+          "notebook_path": "/Workspace/Users/renato-oliveira@outlook.com.br/bees/Bees/gold/breweries_count",\
+          "source": "WORKSPACE"\
+        \},\
+        "job_cluster_key": "bees_cluster",\
+        "timeout_seconds": 0,\
+        "email_notifications": \{\},\
+        "webhook_notifications": \{\}\
+      \}\
+    ],\
+    "job_clusters": [\
+      \{\
+        "job_cluster_key": "bees_cluster",\
+        "new_cluster": \{\
+          "cluster_name": "",\
+          "spark_version": "16.3.x-scala2.12",\
+          "aws_attributes": \{\
+            "first_on_demand": 1,\
+            "availability": "SPOT_WITH_FALLBACK",\
+            "zone_id": "auto",\
+            "spot_bid_price_percent": 100\
+          \},\
+          "node_type_id": "m5d.large",\
+          "enable_elastic_disk": true,\
+          "policy_id": "000BA4092FE445AA",\
+          "data_security_mode": "SINGLE_USER",\
+          "runtime_engine": "STANDARD",\
+          "num_workers": 1\
+        \}\
+      \}\
+    ],\
+    "git_source": \{\
+      "git_url": "https://github.com/renatooliveirasilva/bees.git",\
+      "git_provider": "gitHub",\
+      "git_branch": "main"\
+    \},\
+    "format": "MULTI_TASK",\
+    "queue": \{\
+      "enabled": true\
+    \}\
+  \},\
+  "created_time": 1744595062942\
+\}}
