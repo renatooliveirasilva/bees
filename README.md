@@ -54,3 +54,7 @@ Ensure the Unity Catalog is configured and enabled in your Databricks workspace.
 
 ### AWS
 The challenge was developed using AWS S3 Bucket as the data storage, you will need to change the `unity_catalog_path` in the bronze notebook if you are using a different cloud service.
+
+### One more thing...
+
+See more details in `complementary_file.pdf`
